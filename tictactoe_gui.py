@@ -21,7 +21,6 @@ scoreX = 0
 scoreO = 0
 scoreTies = 0
 
-
 # FUNCTIONSSSS
 
 def bot_move():
@@ -173,6 +172,7 @@ title_label = tkinter.Label(menu_frame, text="TIC-TAC-TOE", font=("Arial", 30, "
                             bg=colorGray, fg="white")
 title_label.pack(pady=(50, 20))
 
+# pvp button
 btn_pvp = tkinter.Button(menu_frame, text="Player vs Player", font=("Arial", 15), 
                          width=20, command=startPVP)
 btn_pvp.pack(pady=10)
@@ -180,6 +180,7 @@ btn_pvp.pack(pady=10)
 btn_pvp.bind("<Enter>", lambda e: e.widget.config(background=colorLGray))
 btn_pvp.bind("<Leave>", lambda e: e.widget.config(background="white"))
 
+# pvbot button
 btn_pve = tkinter.Button(menu_frame, text="Player vs Bot", font=("Arial", 15), 
                          width=20, command=startPVBOT)
 btn_pve.pack(pady=10)
@@ -207,6 +208,8 @@ for row in range(3):
                              command=lambda row=row, column=column: set_tile(row, column))
         
         btn.grid(row=row+2, column=column, padx=2, pady=2)
+        btn.bind("<Enter>", on_enter)
+        btn.bind("<Leave>", on_leave)
         board[row][column] = btn
 
 button_restart = tkinter.Button(game_frame, text="Restart", font=("Arial", 20), background=colorGray,
@@ -224,13 +227,12 @@ button_restart.bind("<Leave>", lambda e: button_restart.config(background=colorG
 
 # center gui
 window.update()
-windowWidth = 560
+windowWidth = 555
 windowHeight = 600
 screenWidth = window.winfo_screenwidth()
 screenHeight = window.winfo_screenheight()
 windowX = int((screenWidth/2) - (windowWidth/2))
 windowY = int((screenHeight/2) - (windowHeight/2))
 window.geometry(f"{windowWidth}x{windowHeight}+{windowX}+{windowY}")
-
 
 window.mainloop()
